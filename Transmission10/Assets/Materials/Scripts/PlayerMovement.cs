@@ -8,11 +8,14 @@ public class PlayerMovement : MonoBehaviour
     public float speedDampTime = 0.1f; // The damping for the speed parameter
 
     private Animator anim; // Reference to the animator component.
+    private Rigidbody rigidBody;
 
     void Awake()
     {
         if (anim != null)
             anim = GetComponent<Animator>();
+
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
@@ -59,9 +62,9 @@ public class PlayerMovement : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 
         // Create a rotation that is an increment closer to the target rotation from the player's rotation.
-        Quaternion newRotation = Quaternion.Lerp(GetComponent<Rigidbody>().rotation, targetRotation, turnSmoothing * Time.deltaTime);
+        Quaternion newRotation = Quaternion.Lerp(rigidBody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 
         // Change the players rotation to this new rotation.
-        GetComponent<Rigidbody>().MoveRotation(newRotation);
+        rigidBody.MoveRotation(newRotation);
     }
 }
