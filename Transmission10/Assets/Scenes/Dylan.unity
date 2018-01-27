@@ -362,9 +362,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 147975637}
-  walkDistance: 10
+  walkDistance: 5
   runDistance: 10
-  height: 10
+  height: 5
+  rotateSpeed: 0
 --- !u!1001 &1617487287
 Prefab:
   m_ObjectHideFlags: 0
