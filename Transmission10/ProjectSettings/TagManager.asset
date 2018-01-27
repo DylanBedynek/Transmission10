@@ -6,6 +6,10 @@ TagManager:
   tags:
   - BatteryLifeDisplay
   - Battery
+  - waypoint
+  - Red Filter
+  - Green Filter
+  - Blue Filter
   layers:
   - Default
   - TransparentFX
