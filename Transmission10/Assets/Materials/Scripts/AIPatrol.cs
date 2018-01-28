@@ -6,7 +6,12 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AIPatrol : MonoBehaviour
 {
-    public bool playerSighted, bluePlaying, redPlaying;
+
+
+    public bool playerSighted;
+    public static bool redPlaying, bluePlaying;
+
+
 
     BatteryBehavior colorStates;
     
