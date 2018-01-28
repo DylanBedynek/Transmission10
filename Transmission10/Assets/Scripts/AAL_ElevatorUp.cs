@@ -12,6 +12,7 @@ public class AAL_ElevatorUp : MonoBehaviour {
     public GameObject player;
 
     private Transform playerTransform;
+    PlayerMovement playerMove;
 
     //private bool isUsed = false;
     
@@ -22,6 +23,9 @@ public class AAL_ElevatorUp : MonoBehaviour {
         if (other.gameObject == player)
         {
             player.transform.position= finalSpot.transform.position;
+            playerMove = player.GetComponent<PlayerMovement>();
+            playerMove.checkPoint = finalSpot.transform.position;
+            //PlayerMovement.checkPoint = finalSpot.transform.position;
             //isUsed = true;
         }
         //else if (other.tag == "Player" && !isUsed)
