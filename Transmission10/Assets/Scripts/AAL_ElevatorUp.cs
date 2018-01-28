@@ -6,40 +6,36 @@ public class AAL_ElevatorUp : MonoBehaviour {
 
     [SerializeField]
     private GameObject finalSpot;
-    [SerializeField]
-    private GameObject finalSpotBack;
+ 
+    //[SerializeField]
+    //private GameObject finalSpotBack;
+    public GameObject player;
 
     private Transform playerTransform;
 
-    private bool isUsed = false;
+    //private bool isUsed = false;
     
     // Use this for initialization
-	void Start () {
 
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
-	}
-	
- 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !isUsed)
+        if (other.gameObject == player)
         {
-            playerTransform = finalSpot.transform;
-            isUsed = true;
+            player.transform.position= finalSpot.transform.position;
+            //isUsed = true;
         }
-        else if (other.tag == "Player" && !isUsed)
-        {
-            playerTransform = finalSpotBack.transform;
-            isUsed = false;
-        }
+        //else if (other.tag == "Player" && !isUsed)
+        //{
+        //    playerTransform = finalSpotBack.transform;
+        //    isUsed = false;
+        //}
 
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-            isUsed = !isUsed;
-    }
+    //void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //        isUsed = !isUsed;
+    //}
 
 }

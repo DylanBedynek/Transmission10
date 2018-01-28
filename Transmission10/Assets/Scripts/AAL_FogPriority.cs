@@ -15,6 +15,10 @@ public class AAL_FogPriority : MonoBehaviour {
     private float lerpSpeed = 5f;
     float cAlpha;
 
+    public static bool isGreenOn = false;
+
+    private bool canChange = true;
+
     void Start()
     {
         colorMain = this.gameObject.GetComponent<Renderer>().material.color;
@@ -23,6 +27,29 @@ public class AAL_FogPriority : MonoBehaviour {
 
         var cAlpha = colorMain.a;
         currentColor = "black";
+    }
+
+    void Update()
+    {
+        if (isGreenOn && canChange)
+        {
+            GoOffGreen();
+            canChange = false;
+        }
+        if(!isGreenOn && !canChange)
+        {
+            GoOnGreen();
+            canChange = true;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            isGreenOn = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            isGreenOn = false;
+        }
     }
 
     public void ChangeColor(string colorNumber)
@@ -56,8 +83,6 @@ public class AAL_FogPriority : MonoBehaviour {
             colorMain = new Color(0f, 0f, 0f, 1f);
             this.gameObject.GetComponent<Renderer>().material.color = colorMain;
             currentColor = "black";
-
-
         }
 
     }
@@ -113,12 +138,22 @@ public class AAL_FogPriority : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
-            StartCoroutine(FadeTo(1.0f, 0.0f));
+            StartCoroutine(FadeTo(0.0f, 1.0f));
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
-            StartCoroutine(FadeTo(0.0f, 1.0f));
+            StartCoroutine(FadeTo(1.0f, 1.0f));
+    }
+
+    void GoOffGreen()
+    {
+        StartCoroutine(FadeTo(0.0f, 1.0f));
+    }
+
+    void GoOnGreen()
+    {
+        StartCoroutine(FadeTo(1.0f, 1.0f));
     }
 }
