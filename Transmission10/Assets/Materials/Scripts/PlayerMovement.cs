@@ -11,11 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 6f;
     public bool dead = false;
 
-    private Animator anim; // Reference to the animator component.
+    public Animator anim; // Reference to the animator component.
     private Rigidbody rigidBody;
     public Vector3 checkPoint;
     Transform myTransform;
     Vector3 inputDir = Vector3.zero;
+    BatteryBehavior battery;
+    //public AIPatrol aiPatrol;
 
 
     void Awake()
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         myTransform = transform;
         checkPoint = myTransform.position;
+        battery = GetComponent<BatteryBehavior>();
     }
 
 
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5);
         anim.SetBool("Death", false);
         myTransform.position = checkPoint;
+        battery.batteryColor = 0;
 
         //Move character back to checkpoint and stop his momentum.
         //transform.position = CheckPointPosition;
@@ -41,14 +45,14 @@ public class PlayerMovement : MonoBehaviour
         dead = false;
     }
 
-    void OnTriggerEnter(Collider hit)
-    {
-        if(hit.tag == "Roger")
-        {
-            anim.SetBool("Death", true);
-            StartCoroutine(DeathTime());
-        }
-    }
+    //void OnTriggerEnter(Collider hit)
+    //{
+    //    if(hit.tag == "Roger")
+    //    {
+    //        anim.SetBool("Death", true);
+    //        StartCoroutine(DeathTime());
+    //    }
+    //}
 
     void Update()
     {
