@@ -10,6 +10,8 @@ TagManager:
   - Red Filter
   - Green Filter
   - Blue Filter
+  - FogOfWar
+  - Roger
   layers:
   - Default
   - TransparentFX

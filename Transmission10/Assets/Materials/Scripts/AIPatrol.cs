@@ -9,7 +9,7 @@ public class AIPatrol : MonoBehaviour
 
 
     public bool playerSighted;
-    public static bool redPlaying, bluePlaying, playerDead;
+    public static bool redPlaying, bluePlaying, greenPlaying, playerDead;
 
 
 

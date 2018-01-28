@@ -8,6 +8,7 @@ public class BatteryLifeDisplay : MonoBehaviour
     GameObject player;
     BatteryBehavior battery;
     public Text myText;
+    public Image poopIm;
 
 
 	// Use this for initialization
