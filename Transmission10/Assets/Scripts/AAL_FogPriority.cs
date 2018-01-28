@@ -20,6 +20,7 @@ public class AAL_FogPriority : MonoBehaviour {
         colorMain = this.gameObject.GetComponent<Renderer>().material.color;
         if(fogNumber==1)    
             colorMain.a = 0f;
+
         var cAlpha = colorMain.a;
         currentColor = "black";
     }
