@@ -7,6 +7,8 @@ public class BatteryBehavior : MonoBehaviour
 {
     public enum BATTERYSTATE { Red = 1, Blue, Green };
 
+    AIPatrol AIState;
+
     public float batteryLife = 100f;
     public float amountLost;
     public float timerRedBlue = 10f;
@@ -52,6 +54,8 @@ public class BatteryBehavior : MonoBehaviour
         switch (whatColor)
         {
             case BATTERYSTATE.Red:
+                AIState.redPlaying = true;
+                AIState.bluePlaying = false;
                 if (timerRedBlue == 10f)
                 {
                     batteryLife -= 10f;
@@ -68,6 +72,8 @@ public class BatteryBehavior : MonoBehaviour
                 }
                 break;
             case BATTERYSTATE.Blue:
+                AIState.redPlaying = false;
+                AIState.bluePlaying = true;
                 if (timerRedBlue == 10f)
                 {
                     batteryLife -= 10f;
@@ -84,6 +90,8 @@ public class BatteryBehavior : MonoBehaviour
                 }
                 break;
             case BATTERYSTATE.Green:
+                AIState.redPlaying = false;
+                AIState.bluePlaying = false;
                 if (timerGreen == 3f)
                 {
                     batteryLife -= 50f;
@@ -100,6 +108,8 @@ public class BatteryBehavior : MonoBehaviour
                 }
                 break;
             default:
+                AIState.redPlaying = false;
+                AIState.bluePlaying = false;
                 timerGreen = 3f;
                 timerRedBlue = 10f;
                 if(postProcessingBehaviour.profile != null)
