@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour
     {
         if(target == null)
         {
-            Debug.LogWarning("No target attatched to camera");
+            //Debug.LogWarning("No target attatched to camera");
         }
         //offset = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
         _myTransform = transform;
