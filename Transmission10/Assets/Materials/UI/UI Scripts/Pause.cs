@@ -11,7 +11,7 @@ public class Pause : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        Resume();
 	}
 	
 	// Update is called once per frame
@@ -30,14 +30,14 @@ public class Pause : MonoBehaviour {
         
 	}
 
-    void Resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
-    void Paused()
+    public void Paused()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -46,7 +46,7 @@ public class Pause : MonoBehaviour {
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartLevel()
