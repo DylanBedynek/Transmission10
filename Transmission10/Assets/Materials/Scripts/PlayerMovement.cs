@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     Transform myTransform;
     Vector3 inputDir = Vector3.zero;
     BatteryBehavior battery;
+    CameraFollow camFollow;
     //public AIPatrol aiPatrol;
 
 
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         myTransform = transform;
         checkPoint = myTransform.position;
         battery = GetComponent<BatteryBehavior>();
+        camFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
     }
 
 
@@ -57,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Cache the inputs.
-        if(dead == false)
+        if (dead == false && camFollow.isGreen == false)
         {
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
