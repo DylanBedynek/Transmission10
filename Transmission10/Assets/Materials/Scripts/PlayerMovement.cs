@@ -7,44 +7,76 @@ public class PlayerMovement : MonoBehaviour
     public float turnSmoothing = 15f; // A smoothing value for turning the player.
     public float speedDampTime = 0.1f; // The damping for the speed parameter
     float animationSpeedPercent;
+    public float walkSpeed = 2f;
+    public float runSpeed = 6f;
+    public bool dead = false;
 
     private Animator anim; // Reference to the animator component.
     private Rigidbody rigidBody;
+    public Vector3 checkPoint;
+    Transform myTransform;
     Vector3 inputDir = Vector3.zero;
 
-    public float walkSpeed = 2f;
-    public float runSpeed = 6f;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
 
         rigidBody = GetComponent<Rigidbody>();
+        myTransform = transform;
+        checkPoint = myTransform.position;
+    }
+
+
+    public IEnumerator DeathTime()
+    {
+        dead = true;
+        yield return new WaitForSeconds(5);
+        anim.SetBool("Death", false);
+        myTransform.position = checkPoint;
+
+        //Move character back to checkpoint and stop his momentum.
+        //transform.position = CheckPointPosition;
+        //moveDirection = Vector3.zero;
+        dead = false;
+    }
+
+    void OnTriggerEnter(Collider hit)
+    {
+        if(hit.tag == "Roger")
+        {
+            anim.SetBool("Death", true);
+            StartCoroutine(DeathTime());
+        }
     }
 
     void Update()
     {
         // Cache the inputs.
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        if(dead == false)
+        {
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
 
-        if(h != 0f || v != 0f)
-        {
-            if(animationSpeedPercent < 0.5f)
+            if (h != 0f || v != 0f)
             {
-                animationSpeedPercent += Time.deltaTime;
+                anim.SetFloat("SpeedPercent", animationSpeedPercent);
             }
-            anim.SetFloat("SpeedPercent", animationSpeedPercent);
-        }
-        if(h == 0 && v == 0)
-        {
-            if(animationSpeedPercent > 0)
+            if (h == 0 && v == 0)
             {
-                animationSpeedPercent -= Time.deltaTime;
+                if (animationSpeedPercent > 0)
+                {
+                    animationSpeedPercent -= Time.deltaTime;
+                }
+                anim.SetFloat("SpeedPercent", animationSpeedPercent);
             }
-            anim.SetFloat("SpeedPercent", animationSpeedPercent);
+            MovementManagement(h, v);
+
+            if(anim.GetBool("Death") == true)
+            {
+                StartCoroutine(DeathTime());
+            }
         }
-        MovementManagement(h, v);
 
         //Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"),0f, Input.GetAxisRaw("Vertical"));
         //Vector3 inputDir = input.normalized;
@@ -97,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         targetDirection = Camera.main.transform.TransformDirection(targetDirection);
         targetDirection.y = 0.0f;
         inputDir = targetDirection.normalized;
-        animationSpeedPercent = (.3f) * inputDir.magnitude;
+        animationSpeedPercent = (.5f) * inputDir.magnitude;
 
         //if (horizontal != 0f || vertical != 0f)
         //{
