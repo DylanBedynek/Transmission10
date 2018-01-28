@@ -6,6 +6,11 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AIPatrol : MonoBehaviour
 {
+    public bool playerSighted, bluePlaying, redPlaying;
+
+    BatteryBehavior colorStates;
+    
+   
 
     GameObject player;
 
@@ -17,8 +22,6 @@ public class AIPatrol : MonoBehaviour
 
     float accuracy = 1.0f;
 
-
-    public bool playerSighted;
     public float sightDist, fieldOfViewAngle = 100f;
 
     public float atkRange = 0.6f;
@@ -43,6 +46,20 @@ public class AIPatrol : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (bluePlaying)
+            DoNothingWhileBlue();
+        else if (redPlaying)
+            HuntThePlayer();
+        else
+            TravelToWayPoint();
+
+
+    }
+
+    void TravelToWayPoint()
+    {
+        if (myAgent.isStopped)
+            myAgent.isStopped = false;
 
         Vector3 lookAtGoal = new Vector3
             (waypoints[currentWP].transform.position.x, this.transform.position.y, waypoints[currentWP].transform.position.z);
@@ -60,12 +77,11 @@ public class AIPatrol : MonoBehaviour
 
         }
 
-        if(!playerSighted)
+        if (!playerSighted)
             myAgent.SetDestination(lookAtGoal);
 
         SearchForPlayer();
-
-    }
+    }//increments waypoint index to patrol area
     
 
     void SearchForPlayer()
@@ -106,7 +122,7 @@ public class AIPatrol : MonoBehaviour
                 KeepDistance();
             }
         }
-    }
+    }//Raycasts shot out in a cone to search for player while patrolling
 
     void KeepDistance()
     {
@@ -114,8 +130,21 @@ public class AIPatrol : MonoBehaviour
 
         if(dist <= atkRange)
         {
-            Debug.Log("I can hit the player");
+           // Debug.Log("I can hit the player");
             myAgent.isStopped = true;
         }
+    }//stupid way to prevent Ai from merging with the player should they chse them down
+
+    void DoNothingWhileBlue()
+    {
+        myAgent.isStopped = true;
+    }
+
+    void HuntThePlayer()
+    {
+        if (myAgent.isStopped)
+            myAgent.isStopped = false;
+
+        myAgent.SetDestination(player.transform.position);
     }
 }
