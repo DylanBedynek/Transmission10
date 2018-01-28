@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 31a35e581d5e82d41bbd5cb86a1b56ec
+timeCreated: 1517118918
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: XelitaItalic
+  fontNames:
+  - XelitaItalic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
