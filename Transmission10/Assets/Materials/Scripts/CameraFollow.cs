@@ -33,8 +33,7 @@ public class CameraFollow : MonoBehaviour
         }
         //offset = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
         _myTransform = transform;
-        cameraPosition1 = new Vector3(_myTransform.position.x, _myTransform.position.y + 4, _myTransform.position.z);
-        cameraPosition2 = new Vector3(_myTransform.position.x, _myTransform.position.y + 40, _myTransform.position.z);
+        
 
     }
 
@@ -42,6 +41,9 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        cameraPosition1 = new Vector3(_myTransform.position.x, _myTransform.position.y + 4, _myTransform.position.z);
+        cameraPosition2 = new Vector3(_myTransform.position.x, _myTransform.position.y + 40, _myTransform.position.z);
+
         if (isGreen == false)
         {
             _myTransform.position = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
