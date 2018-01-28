@@ -42,7 +42,6 @@ public class AIPatrol : MonoBehaviour
     {
 
         myAgent = GetComponent<NavMeshAgent>();
-        waypoints = GameObject.FindGameObjectsWithTag("waypoint");
 
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -66,8 +65,7 @@ public class AIPatrol : MonoBehaviour
         if (myAgent.isStopped)
             myAgent.isStopped = false;
 
-        Vector3 lookAtGoal = new Vector3
-            (waypoints[currentWP].transform.position.x, this.transform.position.y, waypoints[currentWP].transform.position.z);
+        Vector3 lookAtGoal = new Vector3 (waypoints[currentWP].transform.position.x, this.transform.position.y, waypoints[currentWP].transform.position.z);
         Vector3 direction = lookAtGoal - this.transform.position;
 
         this.transform.LookAt(lookAtGoal);
