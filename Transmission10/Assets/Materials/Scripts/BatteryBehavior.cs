@@ -7,15 +7,19 @@ public class BatteryBehavior : MonoBehaviour
 {
     public enum BATTERYSTATE { Red = 1, Blue, Green };
 
-    AIPatrol AIState;
+    GameObject AIState;
+    AIPatrol aiPatrol;
 
     public float batteryLife = 100f;
     public float amountLost;
     public float timerRedBlue = 10f;
-    public float timerGreen = 3f;
+    public float timerGreen = 5f;
     public int batteryColor = 0;
+    public AAL_FogPriority fog;
     public BATTERYSTATE whatColor;
     public GameObject mainCamera;
+    public CameraFollow camFollow;
+    public Vector3 oldPosition = Vector3.zero;
     public PostProcessingProfile redFilter;
     public PostProcessingProfile blueFilter;
     public PostProcessingProfile greenFilter;
@@ -25,7 +29,14 @@ public class BatteryBehavior : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        camFollow = mainCamera.GetComponent<CameraFollow>();
         postProcessingBehaviour = mainCamera.GetComponent<PostProcessingBehaviour>();
+        AIState = GameObject.FindGameObjectWithTag("Roger");
+        aiPatrol = AIState.GetComponent<AIPatrol>();
+        if(GetComponent<AAL_FogPriority>() != null)
+        {
+            fog = GetComponent<AAL_FogPriority>();
+        }
     }
 
     // Update is called once per frame
@@ -35,18 +46,26 @@ public class BatteryBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             batteryColor = 0;
+            aiPatrol.redPlaying = false;
+            aiPatrol.bluePlaying = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && batteryLife >= 10f && batteryColor == 0)
         {
             batteryColor = 1;
+            aiPatrol.redPlaying = true;
+            aiPatrol.bluePlaying = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && batteryLife >= 10f && batteryColor == 0)
         {
             batteryColor = 2;
+            aiPatrol.redPlaying = false;
+            aiPatrol.bluePlaying = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4) && batteryLife >= 50f && batteryColor == 0)
         {
             batteryColor = 3;
+            aiPatrol.redPlaying = false;
+            aiPatrol.bluePlaying = false;
         }
 
         whatColor = (BATTERYSTATE)batteryColor;
@@ -54,8 +73,6 @@ public class BatteryBehavior : MonoBehaviour
         switch (whatColor)
         {
             case BATTERYSTATE.Red:
-                AIState.redPlaying = true;
-                AIState.bluePlaying = false;
                 if (timerRedBlue == 10f)
                 {
                     batteryLife -= 10f;
@@ -72,8 +89,6 @@ public class BatteryBehavior : MonoBehaviour
                 }
                 break;
             case BATTERYSTATE.Blue:
-                AIState.redPlaying = false;
-                AIState.bluePlaying = true;
                 if (timerRedBlue == 10f)
                 {
                     batteryLife -= 10f;
@@ -90,29 +105,36 @@ public class BatteryBehavior : MonoBehaviour
                 }
                 break;
             case BATTERYSTATE.Green:
-                AIState.redPlaying = false;
-                AIState.bluePlaying = false;
-                if (timerGreen == 3f)
+                if (timerGreen == 5f)
                 {
                     batteryLife -= 50f;
                     postProcessingBehaviour.profile = greenFilter;
+                    oldPosition = camFollow.transform.position;
+
                 }
 
                 timerGreen -= Time.deltaTime;
-
+                if(timerGreen >= 3.0f)
+                {
+                    camFollow.isGreen = true;
+                    camFollow.transform.position = Vector3.Lerp(camFollow.transform.position, camFollow.cameraPosition2, Time.deltaTime);
+                }
+                if(timerGreen <= 1.5f)
+                {
+                    camFollow.transform.position = Vector3.Lerp(camFollow.transform.position, camFollow.cameraPosition1, Time.deltaTime);
+                }
                 if (timerGreen <= 0)
                 {
                     batteryColor = 0;
                     postProcessingBehaviour.profile = null;
-                    timerGreen = 3f;
+                    timerGreen = 5f;
+                    camFollow.isGreen = false;
                 }
                 break;
             default:
-                AIState.redPlaying = false;
-                AIState.bluePlaying = false;
-                timerGreen = 3f;
+                timerGreen = 5f;
                 timerRedBlue = 10f;
-                if(postProcessingBehaviour.profile != null)
+                if (postProcessingBehaviour.profile != null)
                 {
                     postProcessingBehaviour.profile = null;
                 }
