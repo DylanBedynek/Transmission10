@@ -370,7 +370,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4671147162548308, guid: 89cd26c448abfa0499e1b9bfd0f8e6ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4671147162548308, guid: 89cd26c448abfa0499e1b9bfd0f8e6ef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -382,15 +382,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4671147162548308, guid: 89cd26c448abfa0499e1b9bfd0f8e6ef, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4671147162548308, guid: 89cd26c448abfa0499e1b9bfd0f8e6ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.37977904
       objectReference: {fileID: 0}
     - target: {fileID: 4671147162548308, guid: 89cd26c448abfa0499e1b9bfd0f8e6ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9250772
       objectReference: {fileID: 0}
     - target: {fileID: 4671147162548308, guid: 89cd26c448abfa0499e1b9bfd0f8e6ef, type: 2}
       propertyPath: m_RootOrder
@@ -644,6 +644,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 20086557791831972, guid: 3ac37425c8457444da819b923a4ed551,
+        type: 2}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ac37425c8457444da819b923a4ed551, type: 2}
   m_IsPrefabParent: 0
@@ -801,7 +806,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98cd95b9cd4f02a4fa1a083f391ac619, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1130,6 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myText: {fileID: 0}
+  poopIm: {fileID: 0}
 --- !u!4 &1742750990 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4886888262286394, guid: 8933c77faa36d354aaaeff5e2e636fa9,

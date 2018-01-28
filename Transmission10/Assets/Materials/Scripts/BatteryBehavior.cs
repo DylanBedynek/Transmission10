@@ -21,6 +21,7 @@ public class BatteryBehavior : MonoBehaviour
     public PostProcessingProfile blueFilter;
     public PostProcessingProfile greenFilter;
     public PostProcessingBehaviour postProcessingBehaviour;
+    PlayerMovement playerMove;
 
     // Use this for initialization
     void Start()
@@ -28,6 +29,7 @@ public class BatteryBehavior : MonoBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         camFollow = mainCamera.GetComponent<CameraFollow>();
         postProcessingBehaviour = mainCamera.GetComponent<PostProcessingBehaviour>();
+        playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
 
         if (GetComponent<AAL_FogPriority>() != null)
@@ -127,6 +129,7 @@ public class BatteryBehavior : MonoBehaviour
                     postProcessingBehaviour.profile = greenFilter;
                     oldPosition = camFollow.transform.position;
                     AAL_FogPriority.isGreenOn = true;
+                    playerMove.anim.SetFloat("SpeedPercent", 0f);
                 }
                 timerGreen -= Time.deltaTime;
                 if (timerGreen >= 3.0f)

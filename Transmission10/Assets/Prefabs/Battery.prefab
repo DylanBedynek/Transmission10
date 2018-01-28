@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95662241541415352}
   - component: {fileID: 136808236006653882}
   - component: {fileID: 114012342737031750}
+  - component: {fileID: 122373861625175760}
   m_Layer: 0
   m_Name: Battery
   m_TagString: Battery
@@ -37,13 +38,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1284941954423890}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.146892, y: 0.23, z: -2.8192363}
+  m_LocalRotation: {x: 0, y: 0, z: 0.37977904, w: 0.9250772}
+  m_LocalPosition: {x: -2.146892, y: 0.75, z: -2.8192363}
   m_LocalScale: {x: 10, y: 20, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 44.64}
 --- !u!23 &23195883627351562
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -115,6 +116,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c970cb4d013c47d4eb0a1669ad7f5d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!122 &122373861625175760
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1284941954423890}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4279298624
+  m_Size: -0.56
 --- !u!136 &136808236006653882
 CapsuleCollider:
   m_ObjectHideFlags: 1
