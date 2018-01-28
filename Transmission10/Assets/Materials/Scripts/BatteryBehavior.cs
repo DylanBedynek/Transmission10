@@ -47,6 +47,7 @@ public class BatteryBehavior : MonoBehaviour
 
             AIPatrol.redPlaying = false;
             AIPatrol.bluePlaying = false;
+            AIPatrol.greenPlaying = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && batteryLife >= 10f && batteryColor == 0)
         {
@@ -54,6 +55,7 @@ public class BatteryBehavior : MonoBehaviour
 
             AIPatrol.redPlaying = true;
             AIPatrol.bluePlaying = false;
+            AIPatrol.greenPlaying = false;
 
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && batteryLife >= 10f && batteryColor == 0)
@@ -62,6 +64,7 @@ public class BatteryBehavior : MonoBehaviour
 
             AIPatrol.redPlaying = false;
             AIPatrol.bluePlaying = true;
+            AIPatrol.greenPlaying = false;
 
         }
         if (Input.GetKeyDown(KeyCode.Alpha4) && batteryLife >= 50f && batteryColor == 0)
@@ -70,6 +73,7 @@ public class BatteryBehavior : MonoBehaviour
 
             AIPatrol.redPlaying = false;
             AIPatrol.bluePlaying = false;
+            AIPatrol.greenPlaying = true;
         }
 
         whatColor = (BATTERYSTATE)batteryColor;
@@ -134,6 +138,7 @@ public class BatteryBehavior : MonoBehaviour
                     postProcessingBehaviour.profile = null;
                     timerGreen = 5f;
                     camFollow.isGreen = false;
+                    AIPatrol.greenPlaying = false;
                     AAL_FogPriority.isGreenOn = false;
                 }
                 break;
