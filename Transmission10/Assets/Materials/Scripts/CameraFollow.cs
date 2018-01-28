@@ -33,6 +33,9 @@ public class CameraFollow : MonoBehaviour
         }
         //offset = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
         _myTransform = transform;
+        cameraPosition1 = new Vector3(_myTransform.position.x, _myTransform.position.y + 4, _myTransform.position.z);
+        cameraPosition2 = new Vector3(_myTransform.position.x, _myTransform.position.y + 40, _myTransform.position.z);
+
     }
 
 
@@ -41,9 +44,9 @@ public class CameraFollow : MonoBehaviour
     {
         if (isGreen == false)
         {
-            gameObject.transform.position = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
+            _myTransform.position = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
         }
-            _myTransform.LookAt(target);
+            _myTransform.LookAt(target.position);
 
         //Mouse movement for camera?
 

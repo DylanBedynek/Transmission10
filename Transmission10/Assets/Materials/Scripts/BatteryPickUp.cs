@@ -8,20 +8,23 @@ public class BatteryPickUp : MonoBehaviour
     GameObject battery;
     BatteryBehavior batteryBehavior;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        battery = GameObject.FindGameObjectWithTag("Battery");
+
         batteryBehavior = player.GetComponent<BatteryBehavior>();
-	}
-	
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
-            batteryBehavior.batteryLife = 100f;
-            Destroy(battery);
+            if (batteryBehavior.batteryLife != 100f)
+            {
+                batteryBehavior.batteryLife = 100f;
+                Destroy(this.gameObject);
+            }
         }
     }
 }

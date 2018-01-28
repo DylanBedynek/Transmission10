@@ -41,13 +41,13 @@ public class BatteryBehavior : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            batteryColor = 0;
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    batteryColor = 0;
 
-            AIPatrol.redPlaying = false;
-            AIPatrol.bluePlaying = false;
-        }
+        //    AIPatrol.redPlaying = false;
+        //    AIPatrol.bluePlaying = false;
+        //}
         if (Input.GetKeyDown(KeyCode.Alpha2) && batteryLife >= 10f && batteryColor == 0)
         {
             batteryColor = 1;
