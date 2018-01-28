@@ -18,6 +18,7 @@ public class AIPatrol : MonoBehaviour
    
 
     GameObject player;
+    PlayerMovement playerMove;
 
     NavMeshAgent myAgent;
     public GameObject[] waypoints;
@@ -44,8 +45,19 @@ public class AIPatrol : MonoBehaviour
         myAgent = GetComponent<NavMeshAgent>();
 
         player = GameObject.FindGameObjectWithTag("Player");
+        playerMove = GetComponent<PlayerMovement>();
 
     }
+
+    void OnTriggerEnter(Collider hit)
+    {
+        if (hit.tag == "Player")
+        {
+            playerMove.anim.SetBool("Death", true);
+            StartCoroutine(playerMove.DeathTime());
+        }
+    }
+
 
     // Update is called once per frame
     void LateUpdate()
@@ -56,8 +68,6 @@ public class AIPatrol : MonoBehaviour
             HuntThePlayer();
         else
             TravelToWayPoint();
-
-
     }
 
     void TravelToWayPoint()

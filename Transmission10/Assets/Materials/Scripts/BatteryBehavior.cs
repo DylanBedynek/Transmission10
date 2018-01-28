@@ -146,6 +146,8 @@ public class BatteryBehavior : MonoBehaviour
                     postProcessingBehaviour.profile = null;
 
                 }
+                AIPatrol.redPlaying = false;
+                AIPatrol.bluePlaying = false;
                 break;
         }
 
