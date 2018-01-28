@@ -2307,6 +2307,7 @@ MonoBehaviour:
   walkSpeed: 2
   runSpeed: 6
   dead: 0
+  anim: {fileID: 0}
   checkPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &114726792047818252
 MonoBehaviour:

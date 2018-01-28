@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 checkPoint;
     Transform myTransform;
     Vector3 inputDir = Vector3.zero;
+    BatteryBehavior battery;
+    //public AIPatrol aiPatrol;
 
 
     void Awake()
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         myTransform = transform;
         checkPoint = myTransform.position;
+        battery = GetComponent<BatteryBehavior>();
     }
 
 
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5);
         anim.SetBool("Death", false);
         myTransform.position = checkPoint;
+        battery.batteryColor = 0;
 
         //Move character back to checkpoint and stop his momentum.
         //transform.position = CheckPointPosition;
