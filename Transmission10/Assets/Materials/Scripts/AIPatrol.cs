@@ -9,7 +9,7 @@ public class AIPatrol : MonoBehaviour
 
 
     public bool playerSighted;
-    public static bool redPlaying, bluePlaying, playerDead;
+    public static bool redPlaying, bluePlaying, greenPlaying, playerDead;
 
 
 
@@ -124,9 +124,9 @@ public class AIPatrol : MonoBehaviour
     {
         RaycastHit hit;
 
-        Debug.DrawRay(transform.position + Vector3.up, transform.forward * sightDist, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up, (transform.forward + transform.right).normalized * sightDist, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up, (transform.forward - transform.right).normalized * sightDist, Color.red);
+        //Debug.DrawRay(transform.position + Vector3.up, transform.forward * sightDist, Color.red);
+        //Debug.DrawRay(transform.position + Vector3.up, (transform.forward + transform.right).normalized * sightDist, Color.red);
+        //Debug.DrawRay(transform.position + Vector3.up, (transform.forward - transform.right).normalized * sightDist, Color.red);
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, sightDist))
         {

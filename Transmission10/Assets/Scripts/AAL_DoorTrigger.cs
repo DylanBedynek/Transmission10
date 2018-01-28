@@ -5,6 +5,7 @@ using UnityEngine;
 public class AAL_DoorTrigger : MonoBehaviour {
 
     private Animator animInstance;
+    
 
 	// Use this for initialization
 	void Start () {

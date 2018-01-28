@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33081922575229508}
   - component: {fileID: 65178177444910836}
   - component: {fileID: 23761105347483208}
+  - component: {fileID: 114378751795517272}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -38,7 +39,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4755732700573786}
   - component: {fileID: 95245099688949446}
-  - component: {fileID: 65202698483100072}
   m_Layer: 0
   m_Name: NormalDoorWithCollider
   m_TagString: Untagged
@@ -126,8 +126,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1387339490682110}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.25, y: -0.01, z: -7.397}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -116.61, y: 0, z: -1.806}
   m_LocalScale: {x: 85.23724, y: 85.2372, z: 85.2372}
   m_Children:
   - {fileID: 4710216806684346}
@@ -135,7 +135,7 @@ Transform:
   - {fileID: 4356350668845954}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!23 &23383218539257586
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -271,18 +271,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1.6841154}
   m_Center: {x: 0, y: 0, z: -0.060939584}
---- !u!65 &65202698483100072
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1387339490682110}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65885344707831268
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -304,7 +292,7 @@ Animator:
   m_GameObject: {fileID: 1387339490682110}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4b552f03099e88444a103f115098d529, type: 3}
-  m_Controller: {fileID: 9100000, guid: a3b0e932850e7634194eea729f8365ff, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7b3d962d179e3fe4b80e947b29eb01a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -312,3 +300,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114378751795517272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230647339214390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49ee578763f8bc458b4f2a105d0f308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

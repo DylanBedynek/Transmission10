@@ -29,21 +29,26 @@ public class CameraFollow : MonoBehaviour
     {
         if(target == null)
         {
-            Debug.LogWarning("No target attatched to camera");
+            //Debug.LogWarning("No target attatched to camera");
         }
         //offset = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
         _myTransform = transform;
+        
+
     }
 
 
     // Update is called once per frame
     void LateUpdate()
     {
+        cameraPosition1 = new Vector3(_myTransform.position.x, _myTransform.position.y + 4, _myTransform.position.z);
+        cameraPosition2 = new Vector3(_myTransform.position.x, _myTransform.position.y + 40, _myTransform.position.z);
+
         if (isGreen == false)
         {
-            gameObject.transform.position = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
+            _myTransform.position = new Vector3(target.position.x, target.position.y + height, target.position.z - walkDistance);
         }
-            _myTransform.LookAt(target);
+            _myTransform.LookAt(target.position);
 
         //Mouse movement for camera?
 

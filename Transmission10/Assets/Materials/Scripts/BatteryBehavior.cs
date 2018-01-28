@@ -21,6 +21,7 @@ public class BatteryBehavior : MonoBehaviour
     public PostProcessingProfile blueFilter;
     public PostProcessingProfile greenFilter;
     public PostProcessingBehaviour postProcessingBehaviour;
+    PlayerMovement playerMove;
 
     // Use this for initialization
     void Start()
@@ -28,6 +29,7 @@ public class BatteryBehavior : MonoBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         camFollow = mainCamera.GetComponent<CameraFollow>();
         postProcessingBehaviour = mainCamera.GetComponent<PostProcessingBehaviour>();
+        playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
 
         if (GetComponent<AAL_FogPriority>() != null)
@@ -41,19 +43,27 @@ public class BatteryBehavior : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            batteryColor = 0;
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    batteryColor = 0;
 
-            AIPatrol.redPlaying = false;
-            AIPatrol.bluePlaying = false;
-        }
+
+        //    AIPatrol.redPlaying = false;
+        //    AIPatrol.bluePlaying = false;
+        //}
+
+        //    AIPatrol.redPlaying = false;
+        //    AIPatrol.bluePlaying = false;
+        //    AIPatrol.greenPlaying = false;
+        ////}
+
         if (Input.GetKeyDown(KeyCode.Alpha2) && batteryLife >= 10f && batteryColor == 0)
         {
             batteryColor = 1;
 
             AIPatrol.redPlaying = true;
             AIPatrol.bluePlaying = false;
+            AIPatrol.greenPlaying = false;
 
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && batteryLife >= 10f && batteryColor == 0)
@@ -62,6 +72,7 @@ public class BatteryBehavior : MonoBehaviour
 
             AIPatrol.redPlaying = false;
             AIPatrol.bluePlaying = true;
+            AIPatrol.greenPlaying = false;
 
         }
         if (Input.GetKeyDown(KeyCode.Alpha4) && batteryLife >= 50f && batteryColor == 0)
@@ -70,6 +81,7 @@ public class BatteryBehavior : MonoBehaviour
 
             AIPatrol.redPlaying = false;
             AIPatrol.bluePlaying = false;
+            AIPatrol.greenPlaying = true;
         }
 
         whatColor = (BATTERYSTATE)batteryColor;
@@ -117,6 +129,7 @@ public class BatteryBehavior : MonoBehaviour
                     postProcessingBehaviour.profile = greenFilter;
                     oldPosition = camFollow.transform.position;
                     AAL_FogPriority.isGreenOn = true;
+                    playerMove.anim.SetFloat("SpeedPercent", 0f);
                 }
                 timerGreen -= Time.deltaTime;
                 if (timerGreen >= 3.0f)
@@ -134,6 +147,7 @@ public class BatteryBehavior : MonoBehaviour
                     postProcessingBehaviour.profile = null;
                     timerGreen = 5f;
                     camFollow.isGreen = false;
+                    AIPatrol.greenPlaying = false;
                     AAL_FogPriority.isGreenOn = false;
                 }
                 break;
