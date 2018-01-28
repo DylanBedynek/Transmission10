@@ -7,7 +7,9 @@ public class BatteryBehavior : MonoBehaviour
 {
     public enum BATTERYSTATE { Red = 1, Blue, Green };
 
-    AIPatrol AIState;
+    GameObject AIState;
+    AIPatrol aipatrol;
+    
 
     public float batteryLife = 100f;
     public float amountLost;
@@ -26,6 +28,8 @@ public class BatteryBehavior : MonoBehaviour
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         postProcessingBehaviour = mainCamera.GetComponent<PostProcessingBehaviour>();
+        AIState = GameObject.FindGameObjectWithTag("Roger");
+        aipatrol = AIState.GetComponent<AIPatrol>();
     }
 
     // Update is called once per frame
@@ -35,18 +39,26 @@ public class BatteryBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             batteryColor = 0;
+            AIPatrol.redPlaying = false;
+            AIPatrol.bluePlaying = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && batteryLife >= 10f && batteryColor == 0)
         {
             batteryColor = 1;
+            AIPatrol.redPlaying = true;
+            AIPatrol.bluePlaying = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && batteryLife >= 10f && batteryColor == 0)
         {
             batteryColor = 2;
+            AIPatrol.redPlaying = false;
+            AIPatrol.bluePlaying = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4) && batteryLife >= 50f && batteryColor == 0)
         {
             batteryColor = 3;
+            AIPatrol.redPlaying = false;
+            AIPatrol.bluePlaying = false;
         }
 
         whatColor = (BATTERYSTATE)batteryColor;
@@ -54,8 +66,6 @@ public class BatteryBehavior : MonoBehaviour
         switch (whatColor)
         {
             case BATTERYSTATE.Red:
-                AIState.redPlaying = true;
-                AIState.bluePlaying = false;
                 if (timerRedBlue == 10f)
                 {
                     batteryLife -= 10f;
@@ -72,8 +82,7 @@ public class BatteryBehavior : MonoBehaviour
                 }
                 break;
             case BATTERYSTATE.Blue:
-                AIState.redPlaying = false;
-                AIState.bluePlaying = true;
+               
                 if (timerRedBlue == 10f)
                 {
                     batteryLife -= 10f;
@@ -90,8 +99,7 @@ public class BatteryBehavior : MonoBehaviour
                 }
                 break;
             case BATTERYSTATE.Green:
-                AIState.redPlaying = false;
-                AIState.bluePlaying = false;
+                
                 if (timerGreen == 3f)
                 {
                     batteryLife -= 50f;
@@ -107,14 +115,13 @@ public class BatteryBehavior : MonoBehaviour
                     timerGreen = 3f;
                 }
                 break;
-            default:
-                AIState.redPlaying = false;
-                AIState.bluePlaying = false;
+            default:              
                 timerGreen = 3f;
                 timerRedBlue = 10f;
                 if(postProcessingBehaviour.profile != null)
                 {
                     postProcessingBehaviour.profile = null;
+
                 }
                 break;
         }
